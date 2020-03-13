@@ -394,15 +394,20 @@ class Job(object):
         use_CCParser : bool
             Use CCParser module if possible (defautl: True).
         """
-
+        origin = os.getcwd()
         if not self.is_successful(out_extension=out_extension,
                                   success_string=success_string,
                                   success_fct=success_fct,
                                   ignore_meta=ignore_meta,
                                   use_CCParser=use_CCParser):
+            # change directory to wdir (submit needs to be run from there)
+            os.chdir(self.meta["wdir"])
             self.submit(dry_run=dry_run, silent=silent)
+            # take care of new status info
             self.meta["status"] = 'PENDING'
             self.save_meta()
+            # change back to origin folder
+            os.chdir(origin)
         elif not silent:
             wdir = self.meta["wdir"]
             print(f"All good. Skipping folder {wdir}/")
@@ -468,15 +473,20 @@ class Job(object):
         use_CCParser : bool
                 Use CCParser module if possible (defautl: True).
         """
-
+        origin = os.getcwd()
         if not self.is_successful(out_extension=out_extension,
                                   success_string=success_string,
                                   success_fct=success_fct,
                                   ignore_meta=ignore_meta,
                                   use_CCParser=use_CCParser):
+            # change directory to wdir (submit needs to be run from there)
+            os.chdir(self.meta["wdir"])
             self.run(dry_run=dry_run, silent=silent)
+            # take care of new status information
             self.meta["status"] = 'PENDING'
             self.save_meta()
+            # change back to origin folder
+            os.chdir(origin)
 
     def save_meta(self):
         """Dump meta information in json format.
