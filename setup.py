@@ -10,23 +10,31 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [
-    'string',
-    'os',
-    'subprocess',
-    'glob',
-    'json',
-    're'
-]
+# requirements = [
+#     'string',
+#     'os',
+#     'subprocess',
+#     'glob',
+#     'json',
+#     're'
+# ]
 
 setup_requirements = [ ]
 
 test_requirements = [ ]
 
 setup(
+    # Self-descriptive entries
+    name='ccjob',
     author="Alexander Zech",
     author_email='alexzech777@gmail.com',
-    python_requires='>=3.5',
+    description="Easy automation for quantum chemistry jobs.",
+    long_description=readme + '\n\n' + history,
+    long_description_content_type='text/x-rst',
+    url='https://github.com/spectre007/ccjob',
+    version='0.1.0',
+    license="MIT license",
+    keywords='ccjob',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
@@ -38,19 +46,24 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
-    description="Easy automation for quantum chemistry jobs.",
-    install_requires=requirements,
-    license="MIT license",
-    long_description=readme + '\n\n' + history,
-    long_description_content_type='text/x-rst',
-    include_package_data=True,
-    keywords='ccjob',
-    name='ccjob',
-    packages=find_packages(include=['ccjob', 'ccjob.*']),
+    # Requirements
+    python_requires='>=3.5',
+    # install_requires=requirements,
     setup_requires=setup_requirements,
-    test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/spectre007/ccjob',
-    version='0.1.0',
-    zip_safe=False,
+    # test_suite='tests',
+
+    # Which Python importable modules should be included when your package is installed
+    # Handled automatically by setuptools. Use 'exclude' to prevent some specific
+    # subpackage(s) from being added, if needed
+    packages=find_packages(include=['ccjob', 'ccjob.*']),
+
+    # Optional include package data to ship with your package
+    # Customize MANIFEST.in if the general case does not suit your needs
+    # Comment out this line to prevent the files from being packaged with your software
+    include_package_data=True,
+
+    # Manual control if final package is compressible or not,
+    # set False to prevent the .egg from being made
+    # zip_safe=False,
     )
