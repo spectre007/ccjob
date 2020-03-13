@@ -31,7 +31,7 @@ class SLURM(JobScheduler):
     def __init__(self):
         pass
 
-    def parse_jobid_batch(submit_string):
+    def parse_jobid_batch(self, submit_string):
         p = r"Submitted batch job\s+(\d+)"
         match = re.search(p, submit_string)
         if match:
@@ -54,7 +54,7 @@ class SLURM(JobScheduler):
         else:
             raise IndexError(f"No status found for Job ID {jobid}!")
 
-    def tformat(days=0, hours=0, minutes=0):
+    def tformat(self, days=0, hours=0, minutes=0):
         if any([days < 0, hours < 0, minutes < 0]):
             raise ValueError("Only non-negative integers allowed for time format!")
         if all([days == 0, hours == 0, minutes == 0]):
