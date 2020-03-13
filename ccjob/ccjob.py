@@ -5,6 +5,7 @@ import json
 import re
 from ccjob.templates import defaults
 from ccjob.queue import queue_factory
+from ccjob.utils import split_path
 
 class Input(object):
     def __init__(self, fpath, inp_string=None, to_file=True):
