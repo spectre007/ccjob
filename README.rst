@@ -20,7 +20,6 @@ Easy automation for quantum chemistry jobs.
 
 
 * Free software: MIT license
-.. * Documentation: https://ccjob.readthedocs.io.
 
 
 Features
