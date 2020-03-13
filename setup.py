@@ -26,13 +26,13 @@ test_requirements = [ ]
 setup(
     # Self-descriptive entries
     name='ccjob',
+    version='0.1.1',
     author="Alexander Zech",
     author_email='alexzech777@gmail.com',
     description="Easy automation for quantum chemistry jobs.",
     long_description=readme + '\n\n' + history,
     long_description_content_type='text/x-rst',
     url='https://github.com/spectre007/ccjob',
-    version='0.1.0',
     license="MIT license",
     keywords='ccjob',
     classifiers=[
