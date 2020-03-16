@@ -21,12 +21,12 @@ def find_output(directory, extension="out", abspath=True):
     """
     dir_list = [fn for fn in glob.glob(directory+"/*."+extension)
                 if not os.path.basename(fn).startswith("slurm")]
-    
+
     if len(dir_list) != 1:
         err = f"Could not determine unique .{extension} file in {directory}/ !"
         raise FileNotFoundError(err)
     else:
-        outpath = os.path.join(directory, dir_list[0])
+        outpath = dir_list[0]
         if abspath:
             absdir  = os.path.abspath(directory)
             outpath = os.path.join(absdir, dir_list[0])
@@ -34,7 +34,7 @@ def find_output(directory, extension="out", abspath=True):
 
 def find_eleconfig(directory, abspath=True):
     """Find a suitable electronic configuration file in a directory.
-    
+
     Parameters
     ----------
     directory : str
@@ -62,11 +62,20 @@ def find_eleconfig(directory, abspath=True):
         err = "No or more than one electronic configuration file detected!"
         raise FileNotFoundError(err)
     else:
-        elconf_path = os.path.join(directory, intersec[0])
+        elconf_path = intersec[0]
         if abspath:
             absdir  = os.path.abspath(directory)
             outpath = os.path.join(absdir, intersec[0])
         return elconf_path
+
+def module_exists(module_name):
+    """ Check if a module can be imported. """
+    try:
+        __import__(module_name)
+    except ImportError:
+        return False
+    else:
+        return True
 
 def split_path(filepath):
     """
@@ -194,4 +203,3 @@ def eleconfig_update(*dct, fname="eleconfig.txt"):
         dct[0].update(eleconfig)
     else:
         return eleconfig
-
