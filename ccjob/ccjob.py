@@ -260,7 +260,7 @@ class Job(object):
             # manual implementation of has_finished
             if success_fct == None:
                 with open(path_to_outfile) as out:
-                    for i, line in out:
+                    for line in out:
                         if success_string in line:
                             normal = True
             else:
