@@ -26,7 +26,7 @@ test_requirements = [ ]
 setup(
     # Self-descriptive entries
     name='ccjob',
-    version='0.1.3',
+    version='0.1.4',
     author="Alexander Zech",
     author_email='alexzech777@gmail.com',
     description="Easy automation for quantum chemistry jobs.",
