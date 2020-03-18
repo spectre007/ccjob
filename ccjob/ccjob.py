@@ -26,7 +26,7 @@ class Input(object):
             self.save_input()
 
     @classmethod
-    def from_template(cls, template, fpath, **kwargs):
+    def from_template(cls, template, fpath, defaults=defaults, **kwargs):
         """ Alternative constructor using string.Template
 
         Parameters

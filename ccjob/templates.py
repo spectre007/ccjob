@@ -8,6 +8,7 @@ B = ("O        -7.9563726699    1.4854060709    0.1167920007\n"
 pc = ("-7.9563726699    1.4854060709    0.1167920007    -0.8\n"
       "-6.9923165534    1.4211335985    0.1774706091     0.4\n"
       "-8.1058463545    2.4422204631    0.1115993752     0.4")
+frag = f"0 1\n{A}\n--\n0 1\n{B}"
 
 defaults = {
     "basis"            : "cc-pVDZ",
@@ -35,13 +36,17 @@ defaults = {
     "print_orbitals"   : 15,
     "point_charges"    : pc,
     "aux_memory"       : 20000,
-    "comment"          : "generated from CCJob.Templates",
+    "comment"          : "generated from ccjob.templates",
     "opt_conv_energy"  : 150,
     "opt_conv_displace": 1200,
     "opt_conv_grad"    : 300,
     "opt_max_cycles"   : 50,
-    "opt_dmax"         : 300
-            }
+    "opt_dmax"         : 300,
+    "fragments"        : frag,
+    "plot_nx"          : 100,
+    "plot_ny"          : 100,
+    "plot_nz"          : 100,
+}
 
 ADC = Template("""$$comment
 $comment
@@ -91,7 +96,7 @@ $$end
 
 $$molecule
 $charge $multiplicity
-$xyz                     
+$xyz
 $$end""")
 
 MP2_prepolExportDens = Template("""$$comment
@@ -118,7 +123,7 @@ $$end
 
 $$molecule
 $charge $multiplicity
-$xyz                     
+$xyz
 $$end
 
 $$external_charges
@@ -292,7 +297,7 @@ $$end
 
 $$molecule
 $charge_b $multiplicity_b
-$frag_b_bse                    
+$frag_b_bse
 $$end
 
 @@@
@@ -357,7 +362,7 @@ $$end
 
 $$molecule
 $charge_b $multiplicity_b
-$frag_b_bse                    
+$frag_b_bse
 $$end
 
 @@@
@@ -1055,4 +1060,3 @@ $$molecule
   read
 $$end
 """)
-
